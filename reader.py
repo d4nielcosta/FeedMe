@@ -13,7 +13,7 @@ with open('Glasgow_rest_db.csv', 'rb') as f:
         postCode_list += splits
 
 
-   
+
 
 
 
