@@ -10,58 +10,7 @@
     <script src="auxFunctions.js"></script>
 </head>
 <body>
-
-
-
-<div class="map-contain">
-        <div class="columns small-12 medium-2 menu">
-            <h3 class="map-logo">Feed Me</h3>
-                <select>
-                    <option value="test">Radius</option>
-                </select>
-                            <select>
-                    <option value="test">Restaurant</option>
-                </select>
-                            <select>
-                    <option value="test">Price range</option>
-                </select>
-
-            <h5><a href="index.html"><i class="fa fa-arrow-left"></i>
- Home</a></h5>
-
-
-
-
-
-
-             <div id="myModal" class="reveal-modal" data-reveal>
-  <h2>Restaurant Name <span class="stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></h2>
-
-
-  <p class="lead">123 Main Street,<br>Glasgow<br>G11 1QW</p>
-  <a class="close-reveal-modal">&#215;</a>
-
-                 <div class="small-12 medium-6 columns">Menu</div>
-                  <div class="small-12 medium-6 columns">Reviews</div>
-</div>
-      
-
-
-
-
-
-
-
-        </div>
-        <div class="columns small-12 medium-10 map">
-           <!--<script type="text/javascript"
-                    src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
-            <div style="overflow:hidden;height:100%;width:100%;">
-                <div id="gmap_canvas" style="height:100%;width:100%;"></div>  
-                <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
-                <a class="google-map-code" href="http://www.themecircle.net" id="get-map-data">themecircle</a>
-           </div>
-        <script type="text/javascript">
+ <script type="text/javascript">
 
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -74,10 +23,12 @@ function getParameterByName(name) {
                 var map;
                 var infowindow;
 
+		var loc = getParameterByName('location');
+
                 // Map vars
                 var latitude;
                 var longitude;
-                var radius;
+                var radius = getParameterByName('radius');
 
                 var storedData;
                 storedData = getParameterByName('location');
@@ -100,7 +51,7 @@ function getParameterByName(name) {
 	                radius = z;
                 }
 
-                setCoordinates(lat(), lon(), 500)
+                setCoordinates(lat(), lon(), radius * 100)
                 var service;
                 function initMap() {
                   map = new google.maps.Map(document.getElementById("gmap_canvas"), {
@@ -174,6 +125,74 @@ function getParameterByName(name) {
                 }
 
         </script>
+
+
+
+<div class="map-contain">
+
+        <div class="columns small-12 medium-2 menu">
+
+<form action="map.html" method="get">
+<input type="hidden" value="Submit" name="location" id="locationU">
+
+
+            <h3 class="map-logo">Feed Me</h3>
+                <select name="radius">
+                    <option value="1" name="radius">1 miles</option>
+                    <option value="3" name="radius">3 miles</option>
+                    <option value="5" name="radius">5 miles</option>
+                    <option value="10" name="radius" selected>10 miles</option>
+                    <option value="15" name="radius">15 miles</option>
+                    <option value="25" name="radius">25 miles</option>
+
+                </select>
+
+                <select id="type" name="type">
+                    <option name="test">What are you hungry for?</option>
+		    <option name="chinese">Chinese</option>
+                    <option name="fish and chips">Fish and Chips</option>
+		    <option name="indian">Indian</option>
+		    <option name="italian">Italian</option>
+                    <option name="mexican">Mexican</option>
+                </select>
+  <input class="button" type="submit" value="Update">
+</form>
+            <h5><a href="index.html"><i class="fa fa-arrow-left"></i>
+ Home</a></h5>
+
+
+
+<script>document.getElementById('locationU').value = loc;</script>
+
+
+             <div id="myModal" class="reveal-modal" data-reveal>
+  <h2>Restaurant Name <span class="stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></h2>
+
+
+  <p class="lead">123 Main Street,<br>Glasgow<br>G11 1QW</p>
+  <a class="close-reveal-modal">&#215;</a>
+
+                 <div class="small-12 medium-6 columns">Menu</div>
+                  <div class="small-12 medium-6 columns">Reviews</div>
+</div>
+      
+
+
+
+
+
+
+
+        </div>
+        <div class="columns small-12 medium-10 map">
+           <!--<script type="text/javascript"
+                    src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
+            <div style="overflow:hidden;height:100%;width:100%;">
+                <div id="gmap_canvas" style="height:100%;width:100%;"></div>  
+                <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+                <a class="google-map-code" href="http://www.themecircle.net" id="get-map-data">themecircle</a>
+           </div>
+  
 
     </div>
 </div>

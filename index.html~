@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<form action="map.html" method="get">
+<form action="map.html?radius=10" method="get">
     <div class="row">
         <div class="small-12 medium-6 columns small-centered">
             <div class="small-12 medium-6 columns">
@@ -28,7 +28,7 @@
                 <select id="type" name="type">
                     <option name="test">What are you hungry for?</option>
 		    <option name="chinese">Chinese</option>
-                    <option name="fish and chips">Fish & Chips</option>
+                    <option name="fish and chips">Fish and Chips</option>
 		    <option name="indian">Indian</option>
 		    <option name="italian">Italian</option>
                     <option name="mexican">Mexican</option>
