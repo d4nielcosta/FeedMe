@@ -43,3 +43,30 @@ function postcodeToCoordLat(postcode) {
     return latitude;
 
 }
+
+function googleMapsReverseAddress(postcode){
+   	 var longitude;
+ 	 var latitude;
+	postcode = postcode.replace(" ", "");  // Trim all spaces
+
+
+	$.ajax({
+		type: "GET",
+		url: 'http://maps.google.com/maps/geo?q=' + postcode + ',+UK&output=csv&sensor=false',
+		async: false,
+		dataType: "json",
+		success: function (data) {
+		    longitude = data[2];
+		    latitude = data[3];
+
+		},
+		error: function () {
+		    alert("api unavailable");
+		}
+	    });
+
+
+	return longitude, latitude;
+
+}
+	
