@@ -6,136 +6,12 @@
     <title>Feed Me - Map View</title>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="auxFunctions.js"></script>
 </head>
 <body>
- <script type="text/javascript">
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-		var type = getParameterByName('type');
-                var map;
-                var infowindow;
-
-		var loc = getParameterByName('location');
-
-                // Map vars
-                var latitude;
-                var longitude;
-                var radius = getParameterByName('radius');
-
-                var storedData;
-                storedData = getParameterByName('location');
-                var x;
-                x = postcodeToCoordLat(storedData);
-                var y;
-                y = postcodeToCoordLon(storedData);
-
-                function lat() {
-                    return x;
-                }
-
-                function lon() {
-                    return y;
-                }
-                        
-                function setCoordinates(x,y, z){
-	                latitude = x;
-	                longitude = y;
-	                radius = z;
-                }
-
-                setCoordinates(lat(), lon(), radius * 100)
-                var service;
-                function initMap() {
-                  map = new google.maps.Map(document.getElementById("gmap_canvas"), {
-                    center: {lat: latitude, lng: longitude},
-                    zoom: 15
-                  });
-
-                  infowindow = new google.maps.InfoWindow();
-
-                  service = new google.maps.places.PlacesService(map);
-                  service.nearbySearch({
-                    location: {lat: latitude, lng: longitude},
-                    radius: radius,
-                    keyword: type,
-                  }, callback);
-                  
-                  var image = "img/blue_MarkerH.png";
-                  var marker = new google.maps.Marker({
-                    map: map,
-                    position: {lat: latitude, lng: longitude},
-                    title: type,
-                    icon: image
-                  });
-                }
-
-                function callback(results, status) {
-                  if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                      createMarker(results[i]);
-                    }
-                  }
-                }
-
-                function createMarker(place) {
-                    var placeLoc = place.geometry.location;
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: place.geometry.location
-                    });
-
-                    var request = { placeId: place.place_id };
-
-
-
-                    google.maps.event.addListener(marker,'click',function(){
-                        service.getDetails(request, function(place, status) {
-
-
-
-
-                              if (status == google.maps.places.PlacesServiceStatus.OK) {
-                                var contentStr = '<h2>'+place.name+' <img  src="img/stars/'+(Math.round(place.rating * 2) / 2).toFixed(1) +'.png" style="display: inline; height: 30px; padding-bottom: 5px;"></h2>'	;
-                                if (!!place.formatted_phone_number) contentStr += '<h5>'+place.formatted_address+'</h5>';
-
-				for (i = 0; i<place.reviews.length; i++) {
-			
-				contentStr += '<p><b>' + place.reviews[i].author_name + '</b>	 rated: <b>' + place.reviews[i].rating +'</b><br>' + place.reviews[i].text +'</p>';
-				}
-                                infowindow.setContent(contentStr);
-                                infowindow.open(map,marker);
-                              } else {
-                                var contentStr = "<h5>No Result, status="+status+"</h5>";
-                                infowindow.setContent(contentStr);
-                                infowindow.open(map,marker);
-                              }
-                        });
-
-                    });
-
-
-                }
-
-        </script>
-
-
-
 <div class="map-contain">
-
         <div class="columns small-12 medium-2 menu">
-
 <form action="map.html" method="get">
 <input type="hidden" value="Submit" name="location" id="locationU">
-
-
             <h3 class="map-logo">Feed Me</h3>
                 <select name="radius">
                     <option value="1" name="radius">1 miles</option>
@@ -144,9 +20,7 @@ function getParameterByName(name) {
                     <option value="10" name="radius" selected>10 miles</option>
                     <option value="15" name="radius">15 miles</option>
                     <option value="25" name="radius">25 miles</option>
-
                 </select>
-
                 <select id="type" name="type">
                     <option value="restaurants" name="restaurants">What are you hungry for?</option>
 		    <option name="chinese">Chinese</option>
@@ -159,11 +33,7 @@ function getParameterByName(name) {
 </form>
             <h5><a href="index.html"><i class="fa fa-arrow-left"></i>
  Home</a></h5>
-
-
-
 <script>document.getElementById('locationU').value = loc;</script>
-
 
              <div id="myModal" class="reveal-modal" data-reveal>
   <h2>Restaurant Name <span class="stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></h2>
@@ -175,15 +45,7 @@ function getParameterByName(name) {
                  <div class="small-12 medium-6 columns">Menu</div>
                   <div class="small-12 medium-6 columns">Reviews</div>
 </div>
-      
-
-
-
-
-
-
-
-        </div>
+             </div>
         <div class="columns small-12 medium-10 map">
            <!--<script type="text/javascript"
                     src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
@@ -197,11 +59,10 @@ function getParameterByName(name) {
     </div>
 </div>
 
-
-
 <script src="js/jquery.js"></script>
 <script src="js/foundation.min.js"></script>
-
+<script src="auxFunctions.js"></script>
+<script src="js/map.js"></script>
 
 <script>
    $(document).foundation();
@@ -210,7 +71,6 @@ $('a.custom-close-reveal-modal').click(function(){
 });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdq7F-6iIAzxJcCybglEZvjYZxsRh6NbQ&signed_in=true&libraries=places&callback=initMap" async defer></script>
-
 
 </body>
 </html>
