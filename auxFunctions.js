@@ -43,3 +43,22 @@ function postcodeToCoordLat(postcode) {
     return latitude;
 
 }
+
+function googleMapsReverseAddress(postcode){
+	postcode = postcode.replace(" ", "")  // Trim all spaces
+
+	$url = 'http://maps.google.com/maps/geo?q=" + postcode + ",+UK&output=csv&sensor=false';
+
+	$data = @file_get_contents($url);
+
+	$result = explode(",", $data);
+
+	//echo $result[0]; // status code
+	//echo $result[1]; // accuracy
+	//echo $result[2]; // latitude
+	//echo $result[3]; // longitude
+
+	return $result[2], $result[3];
+
+}
+	
