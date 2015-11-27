@@ -45,9 +45,7 @@
                   <div class="small-12 medium-6 columns">Reviews</div>
 </div>
 
-<div class="row">
-  <a href="#" class="button" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a>
-</div>
+
 
 
 
