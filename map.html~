@@ -45,9 +45,7 @@
                   <div class="small-12 medium-6 columns">Reviews</div>
 </div>
 
-<div class="row">
-  <a href="#" class="button" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a>
-</div>
+
 
 
 
@@ -106,8 +104,8 @@
                   service = new google.maps.places.PlacesService(map);
                   service.nearbySearch({
                     location: {lat: latitude, lng: longitude},
-                    radius: radius,
-                    keyword: 'restaurant',
+                    radius: radius,	
+                    keyword: 'mexican',
                   }, callback);
                   
                   var image = "img/blue_MarkerH.png";
