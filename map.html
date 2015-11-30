@@ -12,7 +12,7 @@
 <div class="map-contain">
         <div class="columns small-12 medium-2 menu">
 <form action="map.html" method="get">
-<input type="hidden" value="Submit" name="location" id="locationU">
+<input type="hidden" id="location" value="test" name="location">
             <h3 class="map-logo">Feed Me</h3>
                 <select name="radius">
                     <option value="1" name="radius">1 miles</option>
@@ -34,28 +34,17 @@
 </form>
             <h5><a href="index.html"><i class="fa fa-arrow-left"></i>
  Home</a></h5>
-<script>document.getElementById('locationU').value = loc;</script>
 
-             <div id="myModal" class="reveal-modal" data-reveal>
-  <h2>Restaurant Name <span class="stars"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></span></h2>
-
-
-  <p class="lead">123 Main Street,<br>Glasgow<br>G11 1QW</p>
-  <a class="close-reveal-modal">&#215;</a>
-
-                 <div class="small-12 medium-6 columns">Menu</div>
-                  <div class="small-12 medium-6 columns">Reviews</div>
-</div>
              </div>
         <div class="columns small-12 medium-10 map">
            <!--<script type="text/javascript"
                     src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
             <div style="overflow:hidden;height:100%;width:100%;">
-                <div id="gmap_canvas" style="height:100%;width:100%;"></div>  
+                <div id="gmap_canvas" style="height:100%;width:100%;"></div>
                 <style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
                 <a class="google-map-code" href="http://www.themecircle.net" id="get-map-data">themecircle</a>
            </div>
-  
+
 
     </div>
 </div>
@@ -64,12 +53,8 @@
 <script src="js/foundation.min.js"></script>
 <script src="auxFunctions.js"></script>
 <script src="js/map.js"></script>
+<script>document.getElementById("location").value = loc;
 
-<script>
-   $(document).foundation();
-$('a.custom-close-reveal-modal').click(function(){
-  $('#myModal').foundation('reveal', 'close');
-});
 </script>
 
 <script src="mouseTrack.js" type="application/javascript"></script>

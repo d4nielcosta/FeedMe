@@ -30,7 +30,7 @@ function getParameterByName(name) {
                 function lon() {
                     return y;
                 }
-                        
+
                 function setCoordinates(x,y, z){
 	                latitude = x;
 	                longitude = y;
@@ -53,7 +53,7 @@ function getParameterByName(name) {
                     radius: radius,
                     keyword: type,
                   }, callback);
-                  
+
                   var image = "img/blue_MarkerH.png";
                   var marker = new google.maps.Marker({
                     map: map,
@@ -88,7 +88,7 @@ function getParameterByName(name) {
                                 if (!!place.formatted_phone_number) contentStr += '<h5>'+place.formatted_address+'</h5>';
 
 				for (i = 0; i<place.reviews.length; i++) {
-			
+
 				contentStr += '<p><b>' + place.reviews[i].author_name + '</b>	 rated: <b>' + place.reviews[i].rating +'</b><br>' + place.reviews[i].text +'</p>';
 				}
                                 infowindow.setContent(contentStr);
